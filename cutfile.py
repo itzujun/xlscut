@@ -9,7 +9,7 @@ readbook = "E:\\hua.xls"  # 原始文件路径
 savebook = "E:\\files"  # 要保存的目录
 
 
-def huaxiaFile():
+def hx_file():
     limit = 1000
     if not os.path.exists(readbook):
         print("源文件不存在" + readbook)
@@ -41,7 +41,7 @@ def huaxiaFile():
 
 
 # 利用pandas 分割xls文件
-def pdCutxls():
+def pd_cut_xls():
     if not os.path.exists(readbook):
         print("源文件不存在:" + readbook)
         return
@@ -64,5 +64,5 @@ def pdCutxls():
 
 
 if __name__ == "__main__":
-    pdCutxls()
+    pd_cut_xls()
     pass
