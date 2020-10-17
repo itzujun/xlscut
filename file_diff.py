@@ -15,6 +15,19 @@ def find_diff(data1, data2):
     return resp
 
 
+def list_sub(data1, data2):
+    dt1 = data1.copy()
+    dt2 = data2.copy()
+    resp = []
+    for i in range(len(dt1)):
+        if dt1[i] in dt2:
+            resp.append(0)
+            dt2.remove(dt1[i])
+        else:
+            resp.append(dt1[i])
+    return resp
+
+
 if __name__ == "__main__":
     file_name = "DEMO-差异"
     data = pd.read_excel(file_name + ".xlsx", header=0)
@@ -32,12 +45,12 @@ if __name__ == "__main__":
     df1 = data["收入"]
     df2 = data["支出"]
 
-    out1 = set(df1).difference(df2)
-    out2 = set(df2).difference(df1)
+    out1 = list_sub(list(df1), list(df2))
+    out2 = list_sub(list(df2), list(df1))
 
-    new_list1 = find_diff(list(df1), out1)
-    new_list2 = find_diff(list(df2), out2)
+    list_3 = find_diff(list(df1), out1)
+    list_4 = find_diff(list(df2), out2)
 
-    data.loc[:, "收入差异"] = new_list1
-    data.loc[:, "支出差异"] = new_list2
+    data.loc[:, "收入差异"] = list_3
+    data.loc[:, "支出差异"] = list_4
     data.to_excel("new_" + file_name + ".xlsx", index=False)
