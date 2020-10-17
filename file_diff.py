@@ -26,7 +26,7 @@ if __name__ == "__main__":
         for i in range(len(rows)):
             if isinstance(rows[i], str) and rows[i] == "":
                 data.iloc[index, i] = "-"
-            if isinstance(rows[i], float) == rows[i] == 0:
+            if isinstance(rows[i], float) and rows[i] == 0:
                 data.iloc[index, i] = 0
 
     df1 = data["收入"]
@@ -35,8 +35,8 @@ if __name__ == "__main__":
     out1 = set(df1).difference(df2)
     out2 = set(df2).difference(df1)
 
-    new_list1 = (find_diff(list(df1), out1))
-    new_list2 = (find_diff(list(df2), out2))
+    new_list1 = find_diff(list(df1), out1)
+    new_list2 = find_diff(list(df2), out2)
 
     data.loc[:, "收入差异"] = new_list1
     data.loc[:, "支出差异"] = new_list2
