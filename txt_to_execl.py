@@ -1,22 +1,20 @@
 # import pandas as pd
-import xlwt
+import openpyxl
 
 if __name__ == "__main__":
-    file_name = "save-202009"
+    file_name = "save-202010"
     file = open(file_name + ".txt")
-    workbook = xlwt.Workbook(encoding='utf-8')
-    book_sheet = workbook.add_sheet('Sheet1', cell_overwrite_ok=True)
-
-    row = 0
+    workbook = openpyxl.Workbook()
+    book_sheet = workbook.create_sheet(index=0)
+    row = 1
     for line in file:
         data = line.split("|")
         if len(data) == 11:
             data.insert(7, "-")
-        for col in range(len(data)):
+        for col in range(0, len(data)):
             if data[col] == "":
                 data[col] = "0"
-            book_sheet.write(row, col, data[col])
+            book_sheet.cell(row, col + 1, data[col])
         row = row + 1
-
     workbook.save(file_name + ".xlsx")
     file.close()
