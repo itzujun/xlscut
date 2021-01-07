@@ -1,8 +1,10 @@
 # import pandas as pd
 import openpyxl
+import time
 
 if __name__ == "__main__":
-    file_name = "save-202010"
+    begin_time = time.time()
+    file_name = "save-202012"
     file = open(file_name + ".txt")
     workbook = openpyxl.Workbook()
     book_sheet = workbook.create_sheet(index=0)
@@ -16,5 +18,7 @@ if __name__ == "__main__":
                 data[col] = "0"
             book_sheet.cell(row, col + 1, data[col])
         row = row + 1
-    workbook.save(file_name + ".xlsx")
+    workbook.save("./files/" + file_name + ".xlsx")
     file.close()
+    end_time = time.time()
+    print("耗时： {}(秒)".format(round(end_time - begin_time, 2)))
