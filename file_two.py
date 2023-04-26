@@ -4,7 +4,7 @@ import time
 
 if __name__ == "__main__":
     begin_time = time.time()
-    file_name = "save-202108"
+    file_name = "save-202208"
     file = open(file_name + ".txt")
     workbook = openpyxl.Workbook()
     book_sheet = workbook.create_sheet(index=0)
